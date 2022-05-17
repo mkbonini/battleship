@@ -9,4 +9,9 @@ RSpec.describe Cell do
     expect(cell).to be_a(Cell)
   end
 
+  it 'Coordinates' do
+    cell = Cell.new("B4")
+
+    expect(cell.coordinate).to eq("B4")
+  end
 end
