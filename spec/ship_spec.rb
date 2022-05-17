@@ -20,6 +20,12 @@ RSpec.describe Ship do
     expect(cruiser.length).to eq(3)
   end
 
+  xit 'health' do
+    cruiser = Ship.new("Cruiser", 3)
+
+    expect(cruiser.health).to eq(3)
+  end
+
 
 
 
