@@ -20,13 +20,13 @@ RSpec.describe Cell do
     expect(cell.ship).to eq(nil)
   end
 
-  xit 'empty?' do
+  it 'empty?' do
     cell = Cell.new("B4")
 
     expect(cell.empty?).to be true
   end
 
-  xit 'can place ships' do
+  it 'can place ships' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
@@ -36,7 +36,7 @@ RSpec.describe Cell do
     expect(cell.empty?).to be false
   end
 
-  xit 'fired_upon?' do
+  it 'fired_upon?' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
@@ -45,7 +45,7 @@ RSpec.describe Cell do
     expect(cell.fired_upon?).to be false
   end
 
-  xit 'fired_upon' do
+  it 'fired_upon' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
@@ -56,14 +56,14 @@ RSpec.describe Cell do
     expect(cell.fired_upon?).to be true
   end
 
-  xit 'renders an empty cell' do
+  it 'renders an empty cell' do
     cell = Cell.new("B4")
 
     expect(cell.render).to eq(".")
 
   end
 
-  xit 'renders a miss' do
+  it 'renders a miss' do
     cell = Cell.new("B4")
 
     cell.fired_upon
@@ -71,31 +71,31 @@ RSpec.describe Cell do
     expect(cell.render).to eq("M")
   end
 
-  xit 'renders a ship' do
+  it 'renders a ship' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
-    cell.place_ship
+    cell.place_ship(cruiser)
 
     expect(cell.render).to eq(".")
     expect(cell.render(true)).to eq("S")
   end
 
-  xit 'renders a hit' do
+  it 'renders a hit' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
-    cell.place_ship
+    cell.place_ship(cruiser)
     cell.fired_upon
 
     expect(cell.render).to eq("H")
   end
 
-  xit 'renders a sunk ship' do
+  it 'renders a sunk ship' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
-    cell.place_ship
+    cell.place_ship(cruiser)
     cell.fired_upon
     cruiser.hit
     cruiser.hit
