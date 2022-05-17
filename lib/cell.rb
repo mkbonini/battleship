@@ -31,6 +31,8 @@ def render(revealed = false)
   if fired_upon? == true
     if empty?
       return "M"
+    elsif ship.sunk?
+      return "X"
     else
       return "H"
     end
@@ -42,6 +44,8 @@ def render(revealed = false)
     end
   end
 end
+
+
 
 
 

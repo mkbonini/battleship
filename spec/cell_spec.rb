@@ -81,21 +81,21 @@ RSpec.describe Cell do
     expect(cell.render(true)).to eq("S")
   end
 
-  xit 'renders a hit' do
+  it 'renders a hit' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
-    cell.place_ship
+    cell.place_ship(cruiser)
     cell.fired_upon
 
     expect(cell.render).to eq("H")
   end
 
-  xit 'renders a sunk ship' do
+  it 'renders a sunk ship' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
-    cell.place_ship
+    cell.place_ship(cruiser)
     cell.fired_upon
     cruiser.hit
     cruiser.hit
