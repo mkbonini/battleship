@@ -55,4 +55,19 @@ RSpec.describe Cell do
     expect(cell.ship.health).to eq(2)
     expect(cell.fired_upon?).to be true
   end
+
+  xit 'renders an empty cell' do
+    cell = Cell.new("B4")
+
+    expect(cell.render).to eq(".")
+
+  end
+
+  xit 'renders a miss' do
+    cell = Cell.new("B4")
+    
+    cell.fired_upon
+
+    expect(cell.render).to eq("M")
+  end
 end
