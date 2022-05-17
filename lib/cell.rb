@@ -22,9 +22,30 @@ end
 
 def fired_upon
   @fired = true
-  @ship.hit
+  if empty? == false
+    @ship.hit
+  end
+end
 
-end 
+def render(revealed = false)
+  if fired_upon? == true
+    if empty?
+      return "M"
+    else
+      return "H"
+    end
+  else
+    if revealed == true && empty? == false
+      return "S"
+    else
+      return "."
+    end
+  end
+end
+
+
+
+
 
 
 

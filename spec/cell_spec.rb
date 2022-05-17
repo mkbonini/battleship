@@ -63,7 +63,7 @@ RSpec.describe Cell do
 
   end
 
-  xit 'renders a miss' do
+  it 'renders a miss' do
     cell = Cell.new("B4")
 
     cell.fired_upon
@@ -71,11 +71,11 @@ RSpec.describe Cell do
     expect(cell.render).to eq("M")
   end
 
-  xit 'renders a ship' do
+  it 'renders a ship' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
-    cell.place_ship
+    cell.place_ship(cruiser)
 
     expect(cell.render).to eq(".")
     expect(cell.render(true)).to eq("S")
