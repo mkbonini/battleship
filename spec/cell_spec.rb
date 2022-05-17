@@ -20,13 +20,13 @@ RSpec.describe Cell do
     expect(cell.ship).to eq(nil)
   end
 
-  xit 'empty?' do
+  it 'empty?' do
     cell = Cell.new("B4")
 
     expect(cell.empty?).to be true
   end
 
-  xit 'can place ships' do
+  it 'can place ships' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
@@ -36,7 +36,7 @@ RSpec.describe Cell do
     expect(cell.empty?).to be false
   end
 
-  xit 'fired_upon?' do
+  it 'fired_upon?' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
@@ -45,7 +45,7 @@ RSpec.describe Cell do
     expect(cell.fired_upon?).to be false
   end
 
-  xit 'fired_upon' do
+  it 'fired_upon' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 
@@ -56,7 +56,7 @@ RSpec.describe Cell do
     expect(cell.fired_upon?).to be true
   end
 
-  xit 'renders an empty cell' do
+  it 'renders an empty cell' do
     cell = Cell.new("B4")
 
     expect(cell.render).to eq(".")
