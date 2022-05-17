@@ -65,9 +65,41 @@ RSpec.describe Cell do
 
   xit 'renders a miss' do
     cell = Cell.new("B4")
-    
+
     cell.fired_upon
 
     expect(cell.render).to eq("M")
+  end
+
+  xit 'renders a ship' do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell.place_ship
+
+    expect(cell.render).to eq(".")
+    expect(cell.render(true)).to eq("S")
+  end
+
+  xit 'renders a hit' do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell.place_ship
+    cell.fired_upon
+
+    expect(cell.render).to eq("H")
+  end
+
+  xit 'renders a sunk ship' do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell.place_ship
+    cell.fired_upon
+    cruiser.hit
+    cruiser.hit
+
+    expect(cell.render).to eq("X")
   end
 end
