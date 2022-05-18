@@ -46,6 +46,15 @@ RSpec.describe Board do
     expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to be false
     expect(board.valid_placement?(submarine, ["C1", "B1"])).to be false
   end
+  it 'validates placement/diagonal' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])). to be false
+    expect(board.valid_placement?(submarine, ["C2", "D3"])).to be false
+
+  end
 
 
 
