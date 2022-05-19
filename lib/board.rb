@@ -25,5 +25,26 @@ class Board
     @cells.has_key?(coordinate)
   end
 
-  
+  def valid_placement?(ship, range)
+    letters = []
+    numbers = []
+
+    range.each do |coordinate|
+      letters  << coordinate.split("")[0].ord
+      numbers << coordinate.split("")[1].to_i
+    end
+
+    #require 'pry';binding.pry
+    if ship.length != range.length
+      return false
+
+    elsif letters.each_cons(2).all? {|a,b| b == a + 1} && numbers.each_cons(2).all? {|a,b| b == a}
+        return true
+
+    elsif numbers.each_cons(2).all? {|a,b| b == a + 1} && letters.each_cons(2).all? {|a,b| b == a}
+        return true
+    else
+      return false
+    end
+  end
 end
