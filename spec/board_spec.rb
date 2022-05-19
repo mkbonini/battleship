@@ -72,14 +72,14 @@ RSpec.describe Board do
 
     board.place(cruiser,["A1", "A2", "A3"])
 
-    cell_1 = board.cells("A1")
-    cell_2 = board.cells("A2")
-    cell_3 = board.cells("A3")
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
 
     expect(cell_1.ship).to eq(cruiser)
     expect(cell_2.ship).to eq(cruiser)
     expect(cell_3.ship).to eq(cruiser)
-    expect(cell_2).to eq(cell_3)
+    expect(cell_2.ship).to eq(cell_3.ship)
   end
 
   it 'has overlapping ships' do
@@ -90,7 +90,6 @@ RSpec.describe Board do
     board.place(cruiser,["A1", "A2", "A3"])
 
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
-
 
   end
 
