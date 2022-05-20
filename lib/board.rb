@@ -66,6 +66,25 @@ class Board
     end
   end
 
+  def render( revealed = false)
+    render_output = "  1 2 3 4 \n"
+    letters = ["A", "B", "C", "D"]
+    letters.each do |letter|
+
+      render_output << letter + " " + @cells[letter + "1"].render(revealed) + " " + @cells[letter + "2"].render(revealed) + " " + @cells[letter + "3"].render(revealed) + " " + @cells[letter + "4"].render(revealed) + " \n"
+
+    end
+    render_output
+
+  # "  1 2 3 4 \n" +
+    # "A . . . . \n" +
+    # "B . . . . \n" +
+    # "C . . . . \n" +
+    # "D . . . . \n"
+
+
+  end
+
 
 
 
