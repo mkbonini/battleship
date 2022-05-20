@@ -19,6 +19,7 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
     }
+    # @placed_coordinates = []
   end
 
   def valid_coordinate?(coordinate)
@@ -32,6 +33,14 @@ class Board
     range.each do |coordinate|
       letters  << coordinate.split("")[0].ord
       numbers << coordinate.split("")[1].to_i
+    end
+    range.each do |coordinate|
+      # if @placed_coordinates.include?(coordinate)
+      #   return false
+      # end
+      if !@cells[coordinate].empty?
+        return false
+      end
     end
 
     #require 'pry';binding.pry
@@ -52,7 +61,7 @@ class Board
     if valid_placement?(ship, coordinates) == true
       coordinates.each do |coordinate|
         @cells[coordinate].place_ship(ship)
-
+        # @placed_coordinates << coordinate
       end
     end
   end
@@ -61,4 +70,4 @@ class Board
 
 
 
-end 
+end
