@@ -1,7 +1,6 @@
 require './lib/board'
 require './lib/ship'
 require './lib/cell'
-require './lib/render'
 require 'rspec'
 
 RSpec.describe Board do

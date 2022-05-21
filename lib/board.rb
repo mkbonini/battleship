@@ -38,7 +38,7 @@ class Board
       # if @placed_coordinates.include?(coordinate)
       #   return false
       # end
-      if !@cells[coordinate].empty?
+      if !@cells[coordinate].empty? || !valid_coordinate?(coordinate)
         return false
       end
     end
