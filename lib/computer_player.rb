@@ -3,9 +3,9 @@ require './lib/ship'
 require './lib/cell'
 
 class ComputerPlayer
-
-  attr_reader :board
+  attr_reader :board, :ships, :coordinate_array
   def initialize
+
     @board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -35,6 +35,13 @@ class ComputerPlayer
       end
       @board.place(ship, coordinates)
     end
+  end
+
+  def shot_at
+    x = @coordinate_array.shuffle.shift
+    @coordinate_array.delete(x)
+    return x
+
 
   end
 
