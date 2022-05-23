@@ -27,6 +27,16 @@ class Board
   end
 
   def valid_placement?(ship, range)
+
+    range.each do |coordinate|
+      # if @placed_coordinates.include?(coordinate)
+      #   return false
+      # end
+      if !valid_coordinate?(coordinate) || !@cells[coordinate].empty?
+        return false
+      end
+    end
+    
     letters = []
     numbers = []
 
@@ -34,14 +44,7 @@ class Board
       letters  << coordinate.split("")[0].ord
       numbers << coordinate.split("")[1].to_i
     end
-    range.each do |coordinate|
-      # if @placed_coordinates.include?(coordinate)
-      #   return false
-      # end
-      if !@cells[coordinate].empty?
-        return false
-      end
-    end
+
 
     #require 'pry';binding.pry
     if ship.length != range.length
