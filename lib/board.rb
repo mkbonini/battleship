@@ -27,7 +27,6 @@ class Board
   end
 
   def valid_placement?(ship, range)
-
     range.each do |coordinate|
       # if @placed_coordinates.include?(coordinate)
       #   return false
@@ -36,7 +35,6 @@ class Board
         return false
       end
     end
-    
     letters = []
     numbers = []
 
@@ -79,7 +77,7 @@ class Board
     end
     render_output
 
-  # "  1 2 3 4 \n" +
+  # "    1 2 3 4 \n" +
     # "A . . . . \n" +
     # "B . . . . \n" +
     # "C . . . . \n" +
