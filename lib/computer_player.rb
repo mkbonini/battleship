@@ -36,4 +36,9 @@ class ComputerPlayer
       board.place(ship, coordinates)
     end
   end
+
+  def shot_at
+    @coordinate_array.shuffle.pop
+  end
+
 end

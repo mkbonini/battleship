@@ -53,7 +53,7 @@ class Game
 
   def turn
     puts "=============COMPUTER BOARD============="
-    puts @computer.board.render
+    puts @computer.board.render(true)
     puts "==============PLAYER BOARD=============="
     puts @board.render(true)
     puts "Enter the coordinate for your shot"
@@ -62,6 +62,17 @@ class Game
       puts "That is invalid coordinate. Please try again"
       input = gets.chomp.upcase
     end
+    @computer.board.cells[input].fired_upon
+    if @computer.board.cells[input].empty?
+      puts "Your shot on #{input} was a miss"
+    else
+      if @computer.board.cells[input].ship.sunk?
+        puts "Your shot on #{input} sunk my #{@computer.board.cells[input].ship.name}"
+      else
+        puts "Your shot on #{input} was a hit"
+      end
+    end
+
   end
 
 
