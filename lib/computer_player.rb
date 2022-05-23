@@ -33,14 +33,14 @@ class ComputerPlayer
            end
          end
       end
-      board.place(ship, coordinates)
+      @board.place(ship, coordinates)
     end
   end
 
   def shot_at
     x = @coordinate_array.shuffle.shift
     @coordinate_array.delete(x)
-    return x 
+    return x
 
 
   end
