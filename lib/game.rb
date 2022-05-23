@@ -90,9 +90,25 @@ class Game
         puts "Computer shot on #{computer_shot} was a hit"
       end
     end
-    turn
+    if @computer.ships.all?{|ship| ship.sunk?}
+      puts "\n\n\nGame Over You won\n\n\n"
+      game_over
+    elsif @ships.all?{|ship| ship.sunk?}
+      puts "\n\n\nGame Over I win\n\n\n"
+      game_over
+    else
+      turn
+    end
   end
-
+  def game_over
+    @computer = ComputerPlayer.new
+    @board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    @ships = [cruiser, submarine]
+    @player_shots = []
+    start
+  end
 
 
 end
