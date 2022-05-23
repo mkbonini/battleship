@@ -3,7 +3,7 @@ require './lib/ship'
 require './lib/cell'
 
 class ComputerPlayer
-  attr_reader :board, :ships
+  attr_reader :board, :ships, :coordinate_array
   def initialize
 
     @board = Board.new
@@ -38,7 +38,11 @@ class ComputerPlayer
   end
 
   def shot_at
-    @coordinate_array.shuffle.pop
+    x = @coordinate_array.shuffle.shift
+    @coordinate_array.delete(x)
+    return x 
+
+
   end
 
 end

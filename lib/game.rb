@@ -8,6 +8,7 @@ class Game
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     @ships = [cruiser, submarine]
+    @player_shots = []
   end
 
   def start
@@ -62,18 +63,36 @@ class Game
       puts "That is invalid coordinate. Please try again"
       input = gets.chomp.upcase
     end
-    @computer.board.cells[input].fired_upon
-    if @computer.board.cells[input].empty?
-      puts "Your shot on #{input} was a miss"
-    else
-      if @computer.board.cells[input].ship.sunk?
-        puts "Your shot on #{input} sunk my #{@computer.board.cells[input].ship.name}"
+
+    if !@player_shots.include?(input)
+        @computer.board.cells[input].fired_upon
+        @player_shots << input
+      if @computer.board.cells[input].empty?
+        puts "Your shot on #{input} was a miss"
       else
-        puts "Your shot on #{input} was a hit"
+        if @computer.board.cells[input].ship.sunk?
+          puts "Your shot on #{input} sunk my #{@computer.board.cells[input].ship.name}"
+        else
+          puts "Your shot on #{input} was a hit"
+        end
+      end
+    else
+      puts "You already shot at #{input} bozo! Good luck next turn"
+    end
+    computer_shot = @computer.shot_at
+    @board.cells[computer_shot].fired_upon
+    if @board.cells[computer_shot].empty?
+      puts "Computer shot on #{computer_shot} was a miss"
+    else
+      if @board.cells[computer_shot].ship.sunk?
+        puts "Computer shot on #{computer_shot} sunk your #{@board.cells[computer_shot].ship.name}"
+      else
+        puts "Computer shot on #{computer_shot} was a hit"
       end
     end
-
+    turn
   end
+
 
 
 end
