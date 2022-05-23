@@ -3,9 +3,9 @@ require './lib/ship'
 require './lib/cell'
 
 class ComputerPlayer
-
-  attr_reader :board
+  attr_reader :board, :ships
   def initialize
+
     @board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -33,9 +33,7 @@ class ComputerPlayer
            end
          end
       end
-      @board.place(ship, coordinates)
+      board.place(ship, coordinates)
     end
-
   end
-
 end

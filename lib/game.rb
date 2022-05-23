@@ -48,8 +48,20 @@ class Game
 
     end
 
-    #puts computer.board.render(true)
-    #puts "got to setup"
+    turn
+  end
+
+  def turn
+    puts "=============COMPUTER BOARD============="
+    puts @computer.board.render
+    puts "==============PLAYER BOARD=============="
+    puts @board.render(true)
+    puts "Enter the coordinate for your shot"
+    input = gets.chomp.upcase
+    until @board.valid_coordinate?(input) do
+      puts "That is invalid coordinate. Please try again"
+      input = gets.chomp.upcase
+    end
   end
 
 
