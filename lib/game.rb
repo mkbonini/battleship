@@ -30,25 +30,45 @@ class Game
     end
 
   def setup
-    @computer.ship_placement
-    puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your two ships."
-    puts "The Cruiser is three units long and the Submarine is two units long."
-    puts @board.render
+    #Board size
+      puts "Enter a desired board height between 3 and 26 (default is 4)"
+      height = gets.chomp.to_i
+      if height < 3 || height > 26
+        height = 4
+      end
 
-    @ships.each do |ship|
-      puts "Enter the square for the #{ship.name} (#{ship.length} spaces)"
-      input = gets.chomp.upcase
-      input_array = input.split(" ")
-      until @board.valid_placement?(ship, input_array) do
-        puts "Those are invalid coordinates. Please try again"
+      puts "Enter a desired board width between 3 and 26 (default is 4)"
+      width = gets.chomp.to_i
+      if width < 3 || width > 26
+        width = 4
+      end
+
+    #make boards at new size
+      @board.make_cells(height, width)
+      @computer.board.make_cells(height, width)
+
+      puts "you are playing on a #{height} by #{width} board.\n\n"
+
+    #Ship placement
+      @computer.ship_placement
+      puts "I have laid out my ships on the grid."
+      puts "You now need to lay out your two ships."
+      puts "The Cruiser is three units long and the Submarine is two units long."
+      puts @board.render
+
+      @ships.each do |ship|
+        puts "Enter the square for the #{ship.name} (#{ship.length} spaces)"
         input = gets.chomp.upcase
         input_array = input.split(" ")
-      end
-      @board.place(ship, input_array)
-      puts @board.render(true)
+        until @board.valid_placement?(ship, input_array) do
+          puts "Those are invalid coordinates. Please try again"
+          input = gets.chomp.upcase
+          input_array = input.split(" ")
+        end
+        @board.place(ship, input_array)
+        puts @board.render(true)
 
-    end
+      end
 
     turn
   end

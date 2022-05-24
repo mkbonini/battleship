@@ -14,12 +14,13 @@ class ComputerPlayer
   end
 
   def ship_placement
+    @coordinate_array = @board.cells.keys
     @ships.each do |ship|
       coordinates = []
       until @board.valid_placement?(ship,coordinates) do
         direction = rand(2)
         coordinates = []
-        starting_point = rand(16)
+        starting_point = rand(@board.height * @board.width)
         coordinates << @coordinate_array[starting_point]
         if direction == 0
           range = Array (1 .. (ship.length - 1))
