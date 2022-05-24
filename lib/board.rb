@@ -30,8 +30,8 @@ class Board
     numbers = []
 
     range.each do |coordinate|
-      letters  << coordinate.split("")[0].ord
-      numbers << coordinate.split("")[1].to_i
+      letters  << coordinate.split("",2)[0].ord
+      numbers << coordinate.split("",2)[1].to_i
     end
     return [letters, numbers]
   end
@@ -92,7 +92,7 @@ class Board
     letters.each do |letter|
       render_output << letter + " " + @cells[letter + "1"].render(revealed) + " " + @cells[letter + "2"].render(revealed) + " " + @cells[letter + "3"].render(revealed) + " " + @cells[letter + "4"].render(revealed) + " \n"
     end
-    
+
     render_output
   end
 

@@ -11,4 +11,11 @@ RSpec.describe ComputerPlayer do
 
     expect(computer).to be_a(ComputerPlayer)
   end
+
+  it 'computer player takes a shot' do
+    computer = ComputerPlayer.new
+
+    expect(computer.board.cells.keys.include?(computer.shot)).to be true
+  end
+
 end

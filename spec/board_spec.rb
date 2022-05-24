@@ -103,8 +103,35 @@ RSpec.describe Board do
     expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
 
-end
+  end
 
+  it 'splits coordinates' do
+    board = Board.new
+    array = ["A1", "A2", "A3"]
+    expect(board.coordinate_split(array)).to eq([[65, 65 ,65], [1, 2, 3]])
+  end
+
+  it 'checks for consecutive_numbers' do
+    board = Board.new
+    array = ["A1", "A2", "A3"]
+    letters = board.coordinate_split(array)[0]
+    numbers = board.coordinate_split(array)[1]
+
+    expect(board.consecutive_letters(letters, numbers)).to be false
+    expect(board.consecutive_numbers(letters, numbers)).to be true
+
+  end
+
+  it 'checks for consecutive_letters' do
+    board = Board.new
+    array = ["A1", "B1", "C1"]
+    letters = board.coordinate_split(array)[0]
+    numbers = board.coordinate_split(array)[1]
+
+    expect(board.consecutive_letters(letters, numbers)).to be true
+    expect(board.consecutive_numbers(letters, numbers)).to be false
+
+  end
 
 
 

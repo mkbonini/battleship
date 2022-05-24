@@ -55,7 +55,7 @@ class Game
 
   def turn
     #Board Output
-      puts "=============COMPUTER BOARD============="
+      puts "\n=============COMPUTER BOARD============="
       puts @computer.board.render(true)
       puts "==============PLAYER BOARD=============="
       puts @board.render(true)
@@ -71,16 +71,16 @@ class Game
           @computer.board.cells[input].fired_upon
           @player_shots << input
         if @computer.board.cells[input].empty?
-          puts "Your shot on #{input} was a miss"
+          puts "\nYour shot on #{input} was a miss"
         else
           if @computer.board.cells[input].ship.sunk?
-            puts "Your shot on #{input} sunk my #{@computer.board.cells[input].ship.name}"
+            puts "\nYour shot on #{input} sunk my #{@computer.board.cells[input].ship.name}"
           else
-            puts "Your shot on #{input} was a hit"
+            puts "\nYour shot on #{input} was a hit"
           end
         end
       else
-        puts "You already shot at #{input} bozo! Good luck next turn"
+        puts "\nYou already shot at #{input} bozo! Good luck next turn"
       end
 
     #computer shot
