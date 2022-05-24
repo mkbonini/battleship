@@ -61,7 +61,7 @@ class Game
     #Ship placement
       @computer.ship_placement
       puts "I have laid out my ships on the grid."
-      puts "You now need to lay out your #{ships.length} ships."
+      puts "You now need to lay out your #{@ships.length} ships."
       puts "Coordinates should be entered with a space between"
       puts @board.render
 
