@@ -37,12 +37,10 @@ class ComputerPlayer
     end
   end
 
-  def shot_at
-    x = @coordinate_array.shuffle.shift
-    @coordinate_array.delete(x)
-    return x
-
-
+  def shot
+    coordinate = @coordinate_array.shuffle.pop
+    @coordinate_array.delete(coordinate)
+    return coordinate
   end
 
 end

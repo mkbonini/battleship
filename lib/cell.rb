@@ -2,7 +2,6 @@ class Cell
 
 attr_reader :coordinate, :ship
 
-
 def initialize(coordinate)
   @coordinate = coordinate
   @fired = false
@@ -44,15 +43,5 @@ def render(revealed = false)
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
 
 end
