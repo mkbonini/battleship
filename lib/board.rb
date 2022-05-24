@@ -19,22 +19,13 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
     }
-    # @placed_coordinates = []
   end
 
   def valid_coordinate?(coordinate)
     @cells.has_key?(coordinate)
   end
 
-  def valid_placement?(ship, range)
-    range.each do |coordinate|
-      # if @placed_coordinates.include?(coordinate)
-      #   return false
-      # end
-      if !valid_coordinate?(coordinate) || !@cells[coordinate].empty?
-        return false
-      end
-    end
+  def coordinate_split(range)
     letters = []
     numbers = []
 
@@ -42,52 +33,67 @@ class Board
       letters  << coordinate.split("")[0].ord
       numbers << coordinate.split("")[1].to_i
     end
+    return [letters, numbers]
+  end
 
+  def placement_hard_fails(ship, range)
 
-    #require 'pry';binding.pry
+    range.each do |coordinate|
+      if !valid_coordinate?(coordinate) || !@cells[coordinate].empty?
+        return true
+      end
+    end
+
     if ship.length != range.length
+      return true
+    end
+
+    return false
+  end
+
+  def consecutive_numbers(letters, numbers)
+    numbers.each_cons(2).all? {|a,b| b == a + 1} && letters.each_cons(2).all? {|a,b| b == a}
+  end
+
+  def consecutive_letters(letters, numbers)
+    letters.each_cons(2).all? {|a,b| b == a + 1} && numbers.each_cons(2).all? {|a,b| b == a}
+  end
+
+  def valid_placement?(ship, range)
+
+    if placement_hard_fails(ship, range)
       return false
+    end
 
-    elsif letters.each_cons(2).all? {|a,b| b == a + 1} && numbers.each_cons(2).all? {|a,b| b == a}
+    letters = coordinate_split(range)[0]
+    numbers = coordinate_split(range)[1]
+
+    if consecutive_letters(letters,numbers)
         return true
 
-    elsif numbers.each_cons(2).all? {|a,b| b == a + 1} && letters.each_cons(2).all? {|a,b| b == a}
+    elsif consecutive_numbers(letters, numbers)
         return true
+
     else
       return false
     end
   end
 
   def place(ship, coordinates)
-    if valid_placement?(ship, coordinates) == true
       coordinates.each do |coordinate|
         @cells[coordinate].place_ship(ship)
-        # @placed_coordinates << coordinate
       end
-    end
   end
 
   def render( revealed = false)
     render_output = "  1 2 3 4 \n"
     letters = ["A", "B", "C", "D"]
+
     letters.each do |letter|
-
       render_output << letter + " " + @cells[letter + "1"].render(revealed) + " " + @cells[letter + "2"].render(revealed) + " " + @cells[letter + "3"].render(revealed) + " " + @cells[letter + "4"].render(revealed) + " \n"
-
     end
+    
     render_output
-
-  # "    1 2 3 4 \n" +
-    # "A . . . . \n" +
-    # "B . . . . \n" +
-    # "C . . . . \n" +
-    # "D . . . . \n"
-
-
   end
-
-
-
-
 
 end
