@@ -52,7 +52,7 @@ class Game
     #Custom ships
     puts "would you like to create custom ships?"
     puts "Default you have a cruizer (3 units long) and sub (2 units long)"
-    puts "enter y to create ship or n to continue to the game"
+    puts "enter y to create ship or anything else to continue to the game"
     input = gets.chomp.downcase
 
     if input == 'y'
@@ -67,7 +67,7 @@ class Game
 
       @ships.each do |ship|
         puts "Enter the squares for the #{ship.name} (#{ship.length} spaces)"
-        input = gets.chomp.upcase
+        input = gets.chomp.upcase.delete(",\"[]{}")
         input_array = input.split(" ")
         until @board.valid_placement?(ship, input_array) do
           puts "Those are invalid coordinates. Please try again"
